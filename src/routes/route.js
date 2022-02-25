@@ -33,7 +33,6 @@ router.post('/players/:playerName/bookings/:bookingid',function(req,res){
     let bn = req.body.bookingNumber;
     for(let i=0;i<players.length;i++){
         if(playerName==players[i].name){
-            console.log(playerName==players[i].name)
              let x=  players[i].bookings.find(ele=>ele.bookingNumber==bookingId)
              let y=  players[i].bookings.find(ele=>ele.bookingNumber==bn)
              if ( x||y ){
