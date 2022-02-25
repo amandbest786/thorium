@@ -26,32 +26,24 @@ let players =[ {
    res.send(  { "players_details": players , "status": "successfully fetched data" }  )
 })
 
-router.post('/players/:playerName/booking/:bookingId', function (req, res) {
-    let number = req.params.bookingId
-    let name = req.params.playerName
-    let inputDetails = req.body
-    let playerPresent = false;
-    let bookingDone = false;
-    for (let i = 0; i < players.length; i++) {
-    if (name === players[i].name) {
-        playerPresent = true;
-        for (let x=0; x<players[i].bookings.length; x++){
-            if (number == players[i].bookings[x].bookingNumber){
-            res.send("booking already done.")
-            bookingDone = true;
-
-        }
-    }
+router.post('/players/:playerName/bookings/:bookingid',function(req,res){
+    let playerName = req.params.playerName;
+    let bookingId = req.params.bookingid;
+    let booking = req.body;
+    let bn = req.body.bookingNumber;
+    for(let i=0;i<players.length;i++){
+        if(playerName==players[i].name){
+            console.log(playerName==players[i].name)
+             let x=  players[i].bookings.find(ele=>ele.bookingNumber==bookingId)
+             let y=  players[i].bookings.find(ele=>ele.bookingNumber==bn)
+             if ( x||y ){
+                return res.send("Booking id already exists")
+             }
+                players[i].bookings.push(booking)
+                return res.send(players)
             }
-        }
-        if (bookingDone == false){
-            players[i].bookings.push( inputDetails )
-            res.send({"detail" : players[i]})
-    }
-    if (playerPresent == false){
-        res.send("player not being found")
-        }   
+     }
+    return res.send("Player does not exist")
 })
-
 
 module.exports = router;
