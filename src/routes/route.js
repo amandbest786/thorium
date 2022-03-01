@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const book = require("../controller/controller.js")
+const book = require("../controller/controller.js");
 
-router.post('/giveData', book.giveBookData);
+router.post('/createBook', book.createBook);
 
-router.get('/getData', book.getBookData);
+router.post('/createAuthor', book.createAuthor);
+
+router.get('/bookByChetan', book.bookByChetan);
+
+router.get('/twoStates', book.twoStates);
+
+router.get('/rangeBetween', book.rangeBetween);
 
 module.exports = router;

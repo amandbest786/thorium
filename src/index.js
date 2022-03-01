@@ -15,4 +15,3 @@ mongoose.connect("mongodb://127.0.0.1:27017/mymongoDB", {useNewUrlParser: true})
 app.listen(process.env.PORT || 3000, function() {
     console.log('Express app running on port ' + (process.env.PORT || 3000));
 });
-
