@@ -10,11 +10,17 @@ const bookSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    catagory : {
-        type : String,
-        enum : ['Fiction', 'Comic', 'Mystery', 'Fantasy', 'Horror', 'Biography', 'Research', 'Spiritual', 'Motivational']
+    price :{
+        indianPrice : String,
+        EuropeanPrice : String
     },
-    year : Number
+    year : {
+        type : Number,
+        default : 2021
+    },  
+    totalPages : Number,
+    tags : [String],
+    stockAvailable : Boolean
 }, {timestamps : true})
 
-module.exports = mongoose.model('bookdetails',bookSchema);
+module.exports = mongoose.model('Bookdetail2',bookSchema);
