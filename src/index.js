@@ -2,17 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
 const app = express();
 
 app.use(bodyParser.json());
+app.use('/',route)
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/', route);
 
 mongoose.connect("mongodb://127.0.0.1:27017/mymongoDB", {useNewUrlParser: true})
 .then(() => console.log('Successfully connected to mongoDB 27017'))
 .catch(err => console.log('Connection error'))
 
 app.listen(process.env.PORT || 3000, function() {
-    console.log('Express app running on port ' + (process.env.PORT || 3000));
+    console.log('Express app running on port ' + 
+    (process.env.PORT || 3000));
 });
 
