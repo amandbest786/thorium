@@ -1,19 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const book = require("../controller/controller.js");
+const UserController= require("../controller/userController")
+const OrderController= require("../controller/orderController")
+const ProductController= require("../controller/productController")
 
-router.post('/createBook', book.createBook);
+const mid1 = function (req, res, next) 
+{    let freeUser = req.headers["isfreeappuser"]
+console.log(freeUser)
+     if (freeUser) {
+        next()
+    } else { 
+        res.send("request is missing a mandatory header")
+    }
+}
 
-router.get('/bookList', book.bookList);
+router.post("/createUser", mid1, UserController.createUser  )
 
-router.get('/getBooksInYear', book.getBooksInYear);
+router.post("/createProduct", ProductController.createProduct )
 
-router.post('/getParticularBooks', book.getParticularBooks);
-
-router.get('/getXINRBooks', book.getXINRBooks);
-
-router.get('/getRandomBooks', book.getRandomBooks);
-
-
+router.post("/createOrder", mid1, OrderController.createOrder  )
 
 module.exports = router;
