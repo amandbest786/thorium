@@ -8,7 +8,7 @@ const editUser = async function(req, res){
     }
     let edit = await userModel.findOneAndUpdate(
         { _id: param },
-        { $set: { age: 50} },
+        { $set: { age: 25} },
         { $new: true }
     )
     res.send({ msg : edit});

@@ -21,7 +21,7 @@ const login = async function(req, res){
     
       let token = jwt.sign(
         {
-          userId: user._id.toString()
+          userId : user._id.toString()
         },
         "functionup-thorium"
       );
