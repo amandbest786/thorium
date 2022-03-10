@@ -19,7 +19,7 @@ let authentication = async function(req, res, next){
 }
 
 let authorization = async function(req, res, next){
-    let token = req.headers['x-auth-token'] 
+    let token = req.headers['x-auth-token']
     let decodedToken = jwt.verify(token, "functionup-thorium");
     let usedLoggedIn = decodedToken.userId
     let param_Id = req.params.user_Id
